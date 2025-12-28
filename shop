@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locker 3D Prints</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 1.8rem; }
+        header p { margin: 5px 0 0; opacity: 0.9; }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover { transform: translateY(-5px); }
+
+        .product-img {
+            width: 100%;
+            height: 180px;
+            background-color: #e5e7eb;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button:hover { background-color: #1d4ed8; }
+
+        .cart-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #10b981;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-size: 1.1rem;
+            z-index: 100;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .total-section {
+            margin-top: 20px;
+            border-top: 2px solid #eee;
+            padding-top: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: right;
+        }
+
+        .close-btn {
+            background-color: #ef4444;
+            margin-top: 10px;
+        }
+
+        /* Input field for Name */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🚀 Locker 3D Prints</h1>
+    <p>Order online, Pickup at Locker 204</p>
+</header>
+
+<div class="container">
+    <div class="products" id="product-list">
+        </div>
+</div>
+
+<button class="cart-btn" onclick="openCart()">
+    🛒 View Cart (<span id="cart-count">0</span>)
+</button>
+
+<div class="modal" id="cart-modal">
+    <div class="modal-content">
+        <h2>Your Cart</h2>
+        <div id="cart-items">
+            <p>Your cart is empty.</p>
+        </div>
+        <div class="total-section">Total: $<span id="cart-total">0.00</span></div>
+        
+        <input type="text" id="customer-name" placeholder="Enter Your Full Name" required>
+        <p style="font-size: 0.8rem; color: #666;">*Clicking Checkout will open your email app.</p>
+
+        <button onclick="checkoutEmail()" style="margin-top: 10px;">📧 Checkout via Email</button>
+        <button class="close-btn" onclick="closeCart()">Close</button>
+    </div>
+</div>
+
+<script>
+    // --- EDIT YOUR EMAIL HERE ---
+    const myEmail = "INSERT_YOUR_EMAIL@SCHOOL.EDU"; 
+
+    // --- EDIT YOUR PRODUCTS HERE ---
+    const products = [
+        { id: 1, name: "Articulated Dragon", price: 5.00, img: "https://via.placeholder.com/250?text=Dragon" },
+        { id: 2, name: "Fidget Spinner", price: 3.00, img: "https://via.placeholder.com/250?text=Spinner" },
+        { id: 3, name: "Phone Stand", price: 4.50, img: "https://via.placeholder.com/250?text=Phone+Stand" },
+        { id: 4, name: "Custom Keychain", price: 2.00, img: "https://via.placeholder.com/250?text=Keychain" },
+        { id: 5, name: "Low Poly Pikachu", price: 6.00, img: "https://via.placeholder.com/250?text=Pikachu" },
+        { id: 6, name: "Flexi-Rex", price: 4.00, img: "https://via.placeholder.com/250?text=T-Rex" }
+    ];
+
+    let cart = [];
+
+    const productContainer = document.getElementById('product-list');
+    
+    function renderProducts() {
+        productContainer.innerHTML = products.map(product => `
+            <div class="product-card">
+                <img src="${product.img}" alt="${product.name}" class="product-img">
+                <h3>${product.name}</h3>
+                <div class="price">$${product.price.toFixed(2)}</div>
+                <button onclick="addToCart(${product.id})">Add to Cart</button>
+            </div>
+        `).join('');
+    }
+
+    function addToCart(id) {
+        const product = products.find(p => p.id === id);
+        cart.push(product);
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        document.getElementById('cart-count').innerText = cart.length;
+    }
+
+    function openCart() {
+        const cartItemsDiv = document.getElementById('cart-items');
+        const cartModal = document.getElementById('cart-modal');
+        let total = 0;
+
+        if (cart.length === 0) {
+            cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+        } else {
+            cartItemsDiv.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>$${item.price.toFixed(2)}</span>
+                        <span style="color:red; cursor:pointer; margin-left:10px;" onclick="removeFromCart(${index})">X</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.getElementById('cart-total').innerText = total.toFixed(2);
+        cartModal.style.display = 'flex';
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        openCart();
+        updateCartUI();
+    }
+
+    function closeCart() {
+        document.getElementById('cart-modal').style.display = 'none';
+    }
+
+    function checkoutEmail() {
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        const name = document.getElementById('customer-name').value;
+        if (name.trim() === "") {
+            alert("Please enter your name so I know who the order is for!");
+            return;
+        }
+
+        let total = 0;
+        let itemList = "";
+        
+        // Build the list of items for the email
+        cart.forEach(item => {
+            total += item.price;
+            itemList += `%0D%0A• ${item.name} - $${item.price.toFixed(2)}`;
+        });
+
+        const subject = `New 3D Print Order: ${name}`;
+        const body = `Hi, I would like to order the following 3D prints:%0D%0A${itemList}%0D%0A%0D%0ATotal Price: $${total.toFixed(2)}%0D%0A%0D%0AMy Name: ${name}%0D%0AI will pay at the locker. Thanks!`;
+
+        // Open the email app
+        window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+    }
+
+    renderProducts();
+</script>
+
+</body>
+</html>
