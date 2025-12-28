@@ -151,8 +151,8 @@
 <body>
 
 <header>
-    <h1>🚀 Locker 3D Prints</h1>
-    <p>Order online, Pickup at Locker 204</p>
+    <h1>🚀 SCMS Prints</h1>
+    <p>Order online, Pickup at Locker 253. Make sure to state the color of the print you want, it will be like this until further notice.</p>
 </header>
 
 <div class="container">
@@ -182,16 +182,20 @@
 
 <script>
     // --- EDIT YOUR EMAIL HERE ---
-    const myEmail = "INSERT_YOUR_EMAIL@SCHOOL.EDU"; 
+    const myEmail = "INSERT_YOUR_EMAIL@ecsd.us"; 
 
     // --- EDIT YOUR PRODUCTS HERE ---
     const products = [
-        { id: 1, name: "Articulated Dragon", price: 5.00, img: "https://via.placeholder.com/250?text=Dragon" },
-        { id: 2, name: "Fidget Spinner", price: 3.00, img: "https://via.placeholder.com/250?text=Spinner" },
-        { id: 3, name: "Phone Stand", price: 4.50, img: "https://via.placeholder.com/250?text=Phone+Stand" },
-        { id: 4, name: "Custom Keychain", price: 2.00, img: "https://via.placeholder.com/250?text=Keychain" },
-        { id: 5, name: "Low Poly Pikachu", price: 6.00, img: "https://via.placeholder.com/250?text=Pikachu" },
-        { id: 6, name: "Flexi-Rex", price: 4.00, img: "https://via.placeholder.com/250?text=T-Rex" }
+        { id: 1, name: "3 Pack of fidgets", price: 5.00, img: "https://makerworld.bblmw.com/makerworld/model/US615afc5daa4e62/design/2025-05-25_fb0bbfab9abfe.jpg?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" },
+        { id: 2, name: "Clash royale pack", price: 10.00, img: "https://makerworld.bblmw.com/makerworld/model/USe09a94d5d63269/design/2025-10-15_30b0774e0419c8.jpeg?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" },
+        { id: 3, name: "Phone Stand", price: 1.00, img: "https://makerworld.bblmw.com/makerworld/model/US330f5068c37feb/design/2024-01-06_62e922fcf2037.jpeg?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" },
+        { id: 4, name: "Custom Keychain", price: 1.00, img: "https://makerworld.bblmw.com/makerworld/model/US77c76b308cc562/design/2025-02-18_708693ed9ac99.png?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" },
+        { id: 5, name: "5 pack of mini ducks", price: 6.00, img: "https://makerworld.bblmw.com/makerworld/model/US88f83a1897e5f6/design/2025-03-16_ce9adae66a64c.jpg?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" },
+        { id: 6, name: "Spiral passthrough cone", price: 1.00, img: "https://makerworld.bblmw.com/makerworld/model/USa85d1c6d202941/design/2024-12-27_2f172a7e4ed22.jpg?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" }
+        { id: 7, name: "Flexi Fidget Cube", price: 2.50, img: "https://makerworld.bblmw.com/makerworld/model/US1635383e13776e/design/2025-05-13_7a6ae586afda48.jpg?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" }
+        { id: 8, name: "Infinity Cube", price: 2.00, img: "https://makerworld.bblmw.com/makerworld/model/US17b96f753144e9/design/2025-05-17_a90b271c7335c.jpg?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" }
+        { id: 9, name: "Nasa Fabric", price: 2.00, img: "https://makerworld.bblmw.com/makerworld/model/USb969bc26649e6e/design/2024-10-20_580afd39dd08a8.jpeg?x-oss-process=image%2Fresize%2Cw_400%2Fformat%2Cwebp" }
+        { id: , name: "", price: .00, img: "" }
     ];
 
     let cart = [];
@@ -275,7 +279,7 @@
         });
 
         const subject = `New 3D Print Order: ${name}`;
-        const body = `Hi, I would like to order the following 3D prints:%0D%0A${itemList}%0D%0A%0D%0ATotal Price: $${total.toFixed(2)}%0D%0A%0D%0AMy Name: ${name}%0D%0AI will pay at the locker. Thanks!`;
+        const body = `Hi, I would like to order the following 3D prints:%0D%0A${itemList}%0D%0A%0D%0ATotal Price: $${total.toFixed(2)}%0D%0A%0D%0AMy Name: ${name}%0D%0AI will pay at locker 253. Thanks!`;
 
         // Open the email app
         window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
