@@ -9,7 +9,7 @@
         :root {
             --bg-color: #ffffff;
             --text-color: #111111;
-            --accent-color: #000000; /* Black buttons */
+            --accent-color: #000000;
             --gray-light: #f4f4f4;
             --border-color: #e5e5e5;
         }
@@ -23,7 +23,6 @@
             line-height: 1.6;
         }
 
-        /* --- NAVIGATION --- */
         nav {
             display: flex;
             justify-content: space-between;
@@ -37,12 +36,7 @@
             z-index: 100;
         }
 
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-        }
+        .logo { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; }
 
         .cart-link {
             cursor: pointer;
@@ -54,162 +48,82 @@
             transition: all 0.2s;
         }
 
-        .cart-link:hover {
-            background: var(--text-color);
-            color: white;
-            border-color: var(--text-color);
-        }
+        .cart-link:hover { background: var(--text-color); color: white; border-color: var(--text-color); }
 
-        /* --- LAYOUT --- */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .intro {
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .intro { margin-bottom: 40px; max-width: 600px; }
         .intro h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 10px; }
         .intro p { color: #666; }
 
-        /* --- PRODUCT GRID --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 40px 20px;
         }
 
-        .product-card {
-            display: flex;
-            flex-direction: column;
-            transition: opacity 0.2s;
-        }
-
+        .product-card { display: flex; flex-direction: column; transition: opacity 0.2s; }
         .product-card:hover { opacity: 0.9; }
 
         .image-container {
             background-color: var(--gray-light);
-            aspect-ratio: 1 / 1; /* Keeps images square */
+            aspect-ratio: 1 / 1;
             width: 100%;
             border-radius: 4px;
             overflow: hidden;
             margin-bottom: 15px;
         }
 
-        .product-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
+        .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
         .product-card:hover .product-img { transform: scale(1.03); }
 
-        .info {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
+        .info { display: flex; justify-content: space-between; align-items: flex-start; }
         .product-name { font-weight: 600; font-size: 1rem; margin: 0; }
         .product-price { color: #666; font-size: 0.95rem; margin-top: 4px; }
 
         .add-btn {
-            margin-top: 15px;
-            width: 100%;
-            padding: 12px;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-weight: 600;
-            cursor: pointer;
+            margin-top: 15px; width: 100%; padding: 12px;
+            background: transparent; border: 1px solid var(--border-color);
+            color: var(--text-color); font-weight: 600; cursor: pointer;
             transition: all 0.2s;
         }
+        .add-btn:hover { background: var(--text-color); color: white; border-color: var(--text-color); }
 
-        .add-btn:hover {
-            background: var(--text-color);
-            color: white;
-            border-color: var(--text-color);
-        }
-
-        /* --- MODAL (CART) --- */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3);
-            z-index: 200;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3); z-index: 200;
+            align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s;
         }
-
         .modal.active { display: flex; opacity: 1; }
 
         .modal-content {
-            background: white;
-            width: 90%;
-            max-width: 450px;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            background: white; width: 90%; max-width: 450px;
+            padding: 30px; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;
         }
 
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; }
         .remove { color: #999; cursor: pointer; margin-left: 10px; font-size: 0.8rem; }
         .remove:hover { color: #ff0000; }
 
         input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 1rem;
+            width: 100%; padding: 12px; margin-top: 20px;
+            border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 1rem;
         }
 
         .checkout-btn {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-top: 15px;
-            cursor: pointer;
+            background: var(--accent-color); color: white; border: none;
+            width: 100%; padding: 15px; font-size: 1rem; font-weight: 600;
+            margin-top: 15px; cursor: pointer;
         }
         
         .close-link {
-            text-align: center;
-            display: block;
-            margin-top: 15px;
-            color: #666;
-            text-decoration: underline;
-            cursor: pointer;
-            font-size: 0.9rem;
+            text-align: center; display: block; margin-top: 15px;
+            color: #666; text-decoration: underline; cursor: pointer; font-size: 0.9rem;
         }
-
     </style>
 </head>
 <body>
@@ -237,9 +151,7 @@
             <span style="cursor:pointer" onclick="toggleCart()">✕</span>
         </div>
         
-        <div id="cart-items">
-            <p style="color:#666">Your cart is empty.</p>
-        </div>
+        <div id="cart-items"><p style="color:#666">Your cart is empty.</p></div>
 
         <div style="margin-top: 20px; font-weight: bold; text-align: right;">
             Total: $<span id="cart-total">0.00</span>
@@ -253,15 +165,9 @@
 </div>
 
 <script>
-    // ======================================================
-    // 🛠️ SHOP SETTINGS (EDIT THIS SECTION)
-    // ======================================================
-    
-    // 1. Put your school email here:
-    const myEmail = "yourname@ecsd.us";
+    // --- SETTINGS ---
+    const myEmail = "yourname@ecsd.us"; // Put your email here
 
-    // 2. Add your items below. 
-    // I fixed the syntax error (missing comma) here:
     const products = [
         {
             id: 1,
@@ -307,15 +213,12 @@
         }
     ];
 
-    // ======================================================
-    // ⚠️ DO NOT EDIT BELOW THIS LINE
-    // ======================================================
-
+    // --- LOGIC ---
     let cart = [];
     const grid = document.getElementById('product-grid');
     const modal = document.getElementById('cart-modal');
 
-    // Render Products
+    // Load Products
     grid.innerHTML = products.map(p => `
         <div class="product-card">
             <div class="image-container">
@@ -335,7 +238,7 @@
         const item = products.find(p => p.id === id);
         cart.push(item);
         updateCart();
-        toggleCart(); // Open cart immediately for feedback
+        toggleCart();
     }
 
     function removeFromCart(index) {
@@ -345,61 +248,8 @@
 
     function updateCart() {
         document.getElementById('cart-count').innerText = cart.length;
-        
         const container = document.getElementById('cart-items');
         let total = 0;
-
+        
         if (cart.length === 0) {
             container.innerHTML = '<p style="color:#666">Your cart is empty.</p>';
-        } else {
-            container.innerHTML = cart.map((item, index) => {
-                total += item.price;
-                return `
-                <div class="cart-item">
-                    <span>${item.name}</span>
-                    <div>
-                        $${item.price.toFixed(2)}
-                        <span class="remove" onclick="removeFromCart(${index})">Remove</span>
-                    </div>
-                </div>`;
-            }).join('');
-        }
-        document.getElementById('cart-total').innerText = total.toFixed(2);
-    }
-
-    function toggleCart() {
-        if (modal.style.display === 'flex') {
-            modal.style.opacity = '0';
-            setTimeout(() => modal.style.display = 'none', 300);
-        } else {
-            modal.style.display = 'flex';
-            setTimeout(() => modal.style.opacity = '1', 10);
-        }
-    }
-
-    function checkout() {
-        if (cart.length === 0) { alert("Cart is empty"); return; }
-        const name = document.getElementById('customer-name').value;
-        if (!name) { alert("Please enter your name"); return; }
-
-        let total = 0;
-        let list = cart.map(i => {
-            total += i.price;
-            return `• ${i.name} ($${i.price})`;
-        }).join('%0D%0A');
-
-        const subject = `Order for ${name}`;
-        const body = `Hi, I'd like to buy:%0D%0A%0D%0A${list}%0D%0A%0D%0ATotal: $${total.toFixed(2)}%0D%0A%0D%0APaying cash at Locker 253.`;
-        
-        window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
-    }
-
-    // Close modal if clicking outside box
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) toggleCart();
-    });
-
-</script>
-
-</body>
-</html>
