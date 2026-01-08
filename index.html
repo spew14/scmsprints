@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Locker Shop</title>
+    <title>SCHS Prints</title>
     <style>
         /* --- DESIGN SETTINGS --- */
         :root {
@@ -215,14 +215,14 @@
 <body>
 
 <nav>
-    <div class="logo">Locker 204 Prints</div>
+    <div class="logo">SCHS Prints</div>
     <div class="cart-link" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</div>
 </nav>
 
 <div class="container">
     <div class="intro">
         <h1>Freshly Printed.</h1>
-        <p>Order online. Pickup & Pay at Locker 204.</p>
+        <p>Order online. Pickup & Pay at <strong>Locker 253</strong>.</p>
     </div>
 
     <div class="grid" id="product-grid">
@@ -382,7 +382,7 @@
         }).join('%0D%0A');
 
         const subject = `Order for ${name}`;
-        const body = `Hi, I'd like to buy:%0D%0A%0D%0A${list}%0D%0A%0D%0ATotal: $${total.toFixed(2)}%0D%0A%0D%0APaying cash at Locker 204.`;
+        const body = `Hi, I'd like to buy:%0D%0A%0D%0A${list}%0D%0A%0D%0ATotal: $${total.toFixed(2)}%0D%0A%0D%0APaying cash at Locker 253.`;
         
         window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
     }
